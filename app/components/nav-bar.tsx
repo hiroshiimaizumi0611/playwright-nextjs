@@ -54,7 +54,7 @@ export default function NavBar() {
               signIn('github')
             }}
           >
-            SignIN GitHub
+            SignIn GitHub
           </button>
         )}
       </nav>
