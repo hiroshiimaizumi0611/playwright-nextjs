@@ -30,7 +30,7 @@ export default defineConfig({
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
-    storageState: '/e2e/config/storageState.json',
+    storageState: './e2e/config/storageState.json',
   },
 
   /* Configure projects for major browsers */
@@ -71,10 +71,11 @@ export default defineConfig({
     // },
   ],
 
-  /* Run your local dev server before starting the tests */
-  // webServer: {
-  //   command: 'npm run start',
-  //   url: 'http://127.0.0.1:3000',
-  //   reuseExistingServer: !process.env.CI,
-  // },
+  // Run your local dev server before starting the tests */
+  webServer: {
+    command: 'npm run dev',
+    url: 'http://127.0.0.1:3000',
+    timeout: 120 * 1000,
+    reuseExistingServer: true,
+  },
 })
