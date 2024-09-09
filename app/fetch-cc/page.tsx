@@ -1,3 +1,5 @@
+'use client'
+
 import { Note } from '@prisma/client'
 import { useEffect, useState } from 'react'
 
