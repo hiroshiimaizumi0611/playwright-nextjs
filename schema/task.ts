@@ -14,6 +14,6 @@ export const taskIdSchema = z.object({
   taskId: z.string().uuid(),
 })
 
-export type createTaskInput = z.TypeOf<typeof createTaskSchema>
-export type updateTaskInput = z.TypeOf<typeof updateTaskSchema>
-export type taskId = z.TypeOf<typeof taskIdSchema>
+export type CreateTaskInput = z.TypeOf<typeof createTaskSchema>
+export type UpdateTaskInput = z.TypeOf<typeof updateTaskSchema>
+export type TaskId = z.TypeOf<typeof taskIdSchema>
