@@ -51,7 +51,7 @@ export async function deleteTask({ taskId }: TaskId) {
     const task = await prisma.task.delete({
       where: { id: taskId },
     })
-    return task
+    return { task }
   } catch (error: any) {
     return { error }
   }
