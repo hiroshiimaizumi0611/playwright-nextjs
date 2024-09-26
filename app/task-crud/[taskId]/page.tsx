@@ -2,6 +2,7 @@ import { TaskId } from '@/schema/task'
 import { Task } from '@prisma/client'
 import { cookies, headers } from 'next/headers'
 import { notFound } from 'next/navigation'
+import { format } from 'date-fns'
 
 type Props = {
   params: TaskId
@@ -37,6 +38,18 @@ export default async function TaskDetailPage({ params }: Props) {
     taskId: params.taskId,
   })
   if (!task) return notFound()
-    
-  return <div className="mt-16 p-8"></div>
+
+  return (
+    <div className="mt-16 p-8">
+      <div>
+        <p>Task ID: {task.id}</p>
+        <p data-testid="title-dynamic-segment">Title: {task.title}</p>
+        <p>Status: {task.completed ? 'done' : 'not yet'}</p>
+        <p>
+          Created at : {''}
+          {task && format(new Date(task.createdAt), 'yyyy-MM-dd HH:mm:ss')}
+        </p>
+      </div>
+    </div>
+  )
 }
