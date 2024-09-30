@@ -21,4 +21,10 @@ test('Shall crud operation works properly', async ({ page }) => {
   await page.getByRole('button', { name: 'Create' }).click()
   const newTask = page.getByRole('listitem').nth(-1)
   await expect(newTask).toHaveText('Task new')
+  // Update task
+  await page.getByTestId('task-edit-icon').nth(-1).click()
+  await page.getByRole('textbox').fill('Task new updated')
+  await page.getByRole('button', { name: 'Update' }).click()
+  const updatedTask = page.getByRole('listitem').nth(-1)
+  await expect(updatedTask).toHaveText('Task new updated')
 })
