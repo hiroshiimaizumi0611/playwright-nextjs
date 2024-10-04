@@ -38,3 +38,27 @@ test('Shall crud operation works properly', async ({ page }) => {
   await taskList.first().getByRole('checkbox').click()
   await expect(taskList.first().getByRole('checkbox')).not.toBeChecked()
 })
+
+test('Shall task dynamic segment works properly', async ({ page }) => {
+  const taskId1 = ''
+  const taskId2 = ''
+
+  await page.goto('/task-crud')
+  await expect(page.getByRole('heading')).toHaveText(
+    'Click a title on the left yo view detail !'
+  )
+  // Show dynamin segment 1
+  await page.getByRole('link', { name: 'Task 1' }).click()
+  await page.waitForNavigation()
+  expect(page.url()).toBe(`http://localhost:3000/task-crud/${taskId1}`)
+  await expect(page.getByTestId('title-dynamic-segment')).toHaveText(
+    'Title: Task 1'
+  )
+  // Show dynamic segment 2
+  await page.getByRole('link', { name: 'Task 2' }).click()
+  await page.waitForNavigation()
+  expect(page.url()).toBe(`http://localhost:3000/task-crud/${taskId2}`)
+  await expect(page.getByTestId('title-dynamic-segment')).toHaveText(
+    'Title: Task 2'
+  )
+})
